@@ -40,7 +40,7 @@ public class CircularDrumHeadModel extends AbstractModel {
 
     @Override
     public List<? extends AbstractGenerator> getGenerators(final int sampleRate, final int hertz) {
-        List<SineGenerator> generators = new ArrayList<>();
+        List<AbstractGenerator> generators = new ArrayList<>();
         for (int m = 0; m<roots.size(); m++) {
             for (int j=0; j<roots.get(m).size(); j++) {
                 double harmonic = roots.get(m).get(j) / DIVISOR;
