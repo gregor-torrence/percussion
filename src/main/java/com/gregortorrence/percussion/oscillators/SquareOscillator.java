@@ -1,6 +1,7 @@
 package com.gregortorrence.percussion.oscillators;
 
 import static java.lang.Math.PI;
+import static java.lang.Math.signum;
 import static java.lang.Math.sin;
 
 /**
@@ -16,7 +17,7 @@ public class SquareOscillator extends AbstractOscillator {
 
     public double sample(int i) {
         double x = (hertz * i * 2.0 * PI) / sampleRate;
-        return amplitude * (sin(x) > 0.0 ? 1.0 : -1.0);
+        return amplitude * signum(sin(x));
     }
 
 }
