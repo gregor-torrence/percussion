@@ -1,4 +1,4 @@
-package com.gregortorrence.percussion.generators;
+package com.gregortorrence.percussion.oscillators;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.atan;
@@ -9,9 +9,9 @@ import static java.lang.Math.tan;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public class SawtoothGenerator extends AbstractGenerator {
+public class SawtoothOscillator extends AbstractOscillator {
 
-    public SawtoothGenerator(long sampleRate, double hertz, double amplitude) {
+    public SawtoothOscillator(long sampleRate, double hertz, double amplitude) {
         super(sampleRate, hertz, amplitude);
     }
 

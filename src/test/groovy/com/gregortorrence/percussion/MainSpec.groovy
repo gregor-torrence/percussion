@@ -1,9 +1,11 @@
 package com.gregortorrence.percussion
 
-import com.gregortorrence.percussion.generators.AbstractGenerator
-import com.gregortorrence.percussion.generators.Mixer
-import com.gregortorrence.percussion.generators.SawtoothGenerator
-import com.gregortorrence.percussion.generators.TriangleGenerator
+import com.gregortorrence.percussion.oscillators.AbstractOscillator
+import com.gregortorrence.percussion.oscillators.Mixer
+import com.gregortorrence.percussion.oscillators.SawtoothOscillator
+import com.gregortorrence.percussion.oscillators.SineOscillator
+import com.gregortorrence.percussion.oscillators.SquareOscillator
+import com.gregortorrence.percussion.oscillators.TriangleOscillator
 import com.gregortorrence.percussion.models.CircularDrumHeadModel
 import com.gregortorrence.percussion.output.WaveWriter
 import com.gregortorrence.percussion.processors.Envelope
@@ -27,8 +29,8 @@ class MainSpec extends Specification {
         Mixer mixer = new Mixer()
         CircularDrumHeadModel model = new CircularDrumHeadModel()
 
-        List<? extends AbstractGenerator> generators = model.getGenerators(SAMPLE_RATE, 150)
-        List<Double> samples = mixer.mix(generators, SAMPLE_RATE, SECONDS)
+        List<? extends AbstractOscillator> oscillators = model.getOscillators(SAMPLE_RATE, 150)
+        List<Double> samples = mixer.mix(oscillators, SAMPLE_RATE, SECONDS)
         envelope.process(samples)
         normalizer.process(samples)
 
@@ -38,14 +40,31 @@ class MainSpec extends Specification {
         noExceptionThrown()
     }
 
+    def "generate sine"() {
+        when:
+        Envelope envelope = new Envelope()
+        Normalizer normalizer = new Normalizer()
+        SineOscillator oscillator = new SineOscillator(SAMPLE_RATE, 300, 1.0)
+        Mixer mixer = new Mixer()
+
+        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
+        envelope.process(samples)
+        normalizer.process(samples)
+
+        new WaveWriter().write(new File("sine.wav"), samples)
+
+        then:
+        noExceptionThrown()
+    }
+
     def "generate sawtooth"() {
         when:
         Envelope envelope = new Envelope()
         Normalizer normalizer = new Normalizer()
-        SawtoothGenerator generator = new SawtoothGenerator(SAMPLE_RATE, 300, 1.0)
+        SawtoothOscillator oscillator = new SawtoothOscillator(SAMPLE_RATE, 300, 1.0)
         Mixer mixer = new Mixer()
 
-        def samples = mixer.mix([generator], SAMPLE_RATE, 1.5)
+        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
         envelope.process(samples)
         normalizer.process(samples)
 
@@ -59,14 +78,31 @@ class MainSpec extends Specification {
         when:
         Envelope envelope = new Envelope()
         Normalizer normalizer = new Normalizer()
-        TriangleGenerator generator = new TriangleGenerator(SAMPLE_RATE, 300, 1.0)
+        TriangleOscillator oscillator = new TriangleOscillator(SAMPLE_RATE, 300, 1.0)
         Mixer mixer = new Mixer()
 
-        def samples = mixer.mix([generator], SAMPLE_RATE, 1.5)
+        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
         envelope.process(samples)
         normalizer.process(samples)
 
         new WaveWriter().write(new File("triangle.wav"), samples)
+
+        then:
+        noExceptionThrown()
+    }
+
+    def "generate square"() {
+        when:
+        Envelope envelope = new Envelope()
+        Normalizer normalizer = new Normalizer()
+        SquareOscillator oscillator = new SquareOscillator(SAMPLE_RATE, 300, 1.0)
+        Mixer mixer = new Mixer()
+
+        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
+        envelope.process(samples)
+        normalizer.process(samples)
+
+        new WaveWriter().write(new File("square.wav"), samples)
 
         then:
         noExceptionThrown()

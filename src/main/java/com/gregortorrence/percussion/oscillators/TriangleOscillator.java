@@ -1,4 +1,4 @@
-package com.gregortorrence.percussion.generators;
+package com.gregortorrence.percussion.oscillators;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.asin;
@@ -9,9 +9,9 @@ import static java.lang.Math.sin;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public class TriangleGenerator extends AbstractGenerator {
+public class TriangleOscillator extends AbstractOscillator {
 
-    public TriangleGenerator(long sampleRate, double hertz, double amplitude) {
+    public TriangleOscillator(long sampleRate, double hertz, double amplitude) {
         super(sampleRate, hertz, amplitude);
     }
 

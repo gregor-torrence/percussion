@@ -1,4 +1,4 @@
-package com.gregortorrence.percussion.generators;
+package com.gregortorrence.percussion.oscillators;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
@@ -8,15 +8,15 @@ import static java.lang.Math.sin;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public class SineGenerator extends AbstractGenerator {
+public class SquareOscillator extends AbstractOscillator {
 
-    public SineGenerator(long sampleRate, double hertz, double amplitude) {
+    public SquareOscillator(long sampleRate, double hertz, double amplitude) {
         super(sampleRate, hertz, amplitude);
     }
 
     public double sample(int i) {
         double x = (hertz * i * 2.0 * PI) / sampleRate;
-        return amplitude * sin(x);
+        return amplitude * (sin(x) > 0.0 ? 1.0 : -1.0);
     }
 
 }

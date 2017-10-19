@@ -1,8 +1,11 @@
 package com.gregortorrence.percussion.models;
 
 import com.google.common.collect.ImmutableList;
-import com.gregortorrence.percussion.generators.AbstractGenerator;
-import com.gregortorrence.percussion.generators.SineGenerator;
+import com.gregortorrence.percussion.oscillators.AbstractOscillator;
+import com.gregortorrence.percussion.oscillators.SawtoothOscillator;
+import com.gregortorrence.percussion.oscillators.SineOscillator;
+import com.gregortorrence.percussion.oscillators.SquareOscillator;
+import com.gregortorrence.percussion.oscillators.TriangleOscillator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.List;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public class CircularDrumHeadModel extends AbstractModel {
+public class CircularDrumHeadModel extends AbstractAdditiveModel {
 
     private static final double DIVISOR = 2.40482555769577;
 
@@ -39,16 +42,31 @@ public class CircularDrumHeadModel extends AbstractModel {
     private final List<List<Double>> roots = ImmutableList.of(m0, m1, m2, m3, m4);
 
     @Override
-    public List<? extends AbstractGenerator> getGenerators(final int sampleRate, final int hertz) {
-        List<AbstractGenerator> generators = new ArrayList<>();
+    public List<? extends AbstractOscillator> getOscillators(final int sampleRate, final int hertz) {
+        List<AbstractOscillator> oscillators = new ArrayList<>();
         for (int m = 0; m<roots.size(); m++) {
             for (int j=0; j<roots.get(m).size(); j++) {
                 double harmonic = roots.get(m).get(j) / DIVISOR;
-                generators.add(new SineGenerator(sampleRate, (double) hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1))));
+                oscillators.add(createOscillator(sampleRate, hertz, m, j, harmonic));
             }
         }
 
-        return generators;
+        return oscillators;
+    }
+
+    private AbstractOscillator createOscillator(int sampleRate, double hertz, int m, int j, double harmonic) {
+        switch (getOscillatorType()) {
+            case SINE:
+                return new SineOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
+            case SQUARE:
+                return new SquareOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
+            case SAWTOOTH:
+                return new SawtoothOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
+            case TRIANGLE:
+                return new TriangleOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
+            default:
+                throw new IllegalStateException("Unhandled OscillatorType " + getOscillatorType());
+        }
     }
 
 }
