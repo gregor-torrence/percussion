@@ -2,9 +2,7 @@ package com.gregortorrence.percussion.processors;
 
 import java.util.List;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
-import static java.lang.Math.signum;
+import static java.lang.Math.*;
 
 /**
  * Applies exponential distortion to the supplied list of normalized samples
@@ -19,6 +17,8 @@ public class ExponentialDistortion extends AbstractProcessor {
      * exponent > 1.0 means the sound is thinner
      * exponent < 1.0 means the sound is fatter
      * exponent 1.0 means no distortion
+     * Pleasing values range roughly from 0.5 to 10.
+     * For best results, experiment with the VolumeEnvelope coming before or after the distortion.
      */
     public ExponentialDistortion(double exponent) {
         this.exponent = exponent;
@@ -32,7 +32,7 @@ public class ExponentialDistortion extends AbstractProcessor {
             if (abs(sample) > 1.0) {
                 throw new IllegalArgumentException("Supplied samples are not normalized");
             }
-            samples.set(i, pow(abs(sample), 1.0) * signum(sample));
+            samples.set(i, pow(abs(sample), exponent) * signum(sample));
         }
 
         return samples;

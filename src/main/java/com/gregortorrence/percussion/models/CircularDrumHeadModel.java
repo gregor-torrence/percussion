@@ -1,11 +1,7 @@
 package com.gregortorrence.percussion.models;
 
 import com.google.common.collect.ImmutableList;
-import com.gregortorrence.percussion.oscillators.AbstractOscillator;
-import com.gregortorrence.percussion.oscillators.SawtoothOscillator;
-import com.gregortorrence.percussion.oscillators.SineOscillator;
-import com.gregortorrence.percussion.oscillators.SquareOscillator;
-import com.gregortorrence.percussion.oscillators.TriangleOscillator;
+import com.gregortorrence.percussion.oscillators.*;
 
 import java.util.ArrayList;
 import java.util.List;

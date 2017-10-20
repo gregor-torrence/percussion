@@ -1,8 +1,6 @@
 package com.gregortorrence.percussion.oscillators;
 
-import static java.lang.Math.PI;
-import static java.lang.Math.asin;
-import static java.lang.Math.sin;
+import static java.lang.Math.*;
 
 /**
  * Generates a size wave at the supplied frequency and amplitude.

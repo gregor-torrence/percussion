@@ -2,6 +2,7 @@ package com.gregortorrence.percussion.processors;
 
 import java.util.Comparator;
 import java.util.List;
+
 import static java.lang.Math.*;
 
 /**

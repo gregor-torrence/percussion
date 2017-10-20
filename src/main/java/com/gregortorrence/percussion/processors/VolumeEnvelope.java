@@ -7,7 +7,7 @@ import java.util.List;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public class Envelope extends AbstractProcessor{
+public class VolumeEnvelope extends AbstractProcessor{
 
     @Override
     public List<Double> process(List<Double> samples) {

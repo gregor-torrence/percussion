@@ -3,7 +3,7 @@ package com.gregortorrence.percussion.processors;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.Math.abs;
+import static java.lang.Math.*;
 
 /**
  * For debugging purposes. Writes normalized floating point sample data to stdout, and a crude 80 column graph.
