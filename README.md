@@ -2,14 +2,16 @@
 
 Experimental tool to use additive synthesis to create audio sample files of percussion noises.
 The long term goal is to implement this as a serverless REST endpoint that can be invoked from a static front end.
-At this point, there is no UI or service endpoint. There is only one [Spock](http://spockframework.org/) test that 
+At that point, this becomes a tool for generating percussion samples for importing into any sampler software or hardware.
+
+Currently, there is no UI or service endpoint. There is only one [Spock](http://spockframework.org/) spec that 
 writes some example WAV files from hard-coded parameters. 
 
 #### Terminology
-* `Oscillator` A simple oscillator with no envelope functionality.
-* `Model` A class for creating oscillators whose output is to be added with a Mixer.
-* `Mixer` Creates sampled data for processing.
-* `Processor` A class for processing sample data to produce a volume envelop, normalize the sample data, etc.
+* `Oscillator` A simple oscillator with no envelope functionality. Sine, Square, Triangle, and Sawtooth are implemented.
+* `Model` A class for creating a List of oscillators whose output is to be summed with a Mixer. Round and square drum heads are implemented.
+* `Mixer` Creates sampled data from a List of oscillators.  This is additive part of additive synthesis.
+* `Processor` A class for processing sample data. The order in which these are applied is largely arbitrary. Volume Envelope, Normalizer, Distortion, and Debug output processors are implemented.
 
 #### Typical data flow
 * A Model is created and used to generate a List of Oscillators

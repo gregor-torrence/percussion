@@ -1,6 +1,8 @@
 package com.gregortorrence.percussion
 
+import com.gregortorrence.percussion.models.AbstractAdditiveModel
 import com.gregortorrence.percussion.models.CircularDrumHeadModel
+import com.gregortorrence.percussion.models.SquareDrumHeadModel
 import com.gregortorrence.percussion.oscillators.*
 import com.gregortorrence.percussion.output.WaveWriter
 import com.gregortorrence.percussion.processors.*
@@ -16,90 +18,73 @@ class MainSpec extends Specification {
     private static final int SAMPLE_RATE = 44100
     private static final double SECONDS = 1.0
 
+    def "generate sine wave"() {
+        when:
+        generateFromOscillator(new SineOscillator(SAMPLE_RATE, 300, 1.0), "sine.wav")
+        then:
+        noExceptionThrown()
+    }
+
+    def "generate sawtooth wave"() {
+        when:
+        generateFromOscillator(new SawtoothOscillator(SAMPLE_RATE, 300, 1.0), "sawtooth.wav")
+        then:
+        noExceptionThrown()
+    }
+
+    def "generate triangle wave"() {
+        when:
+        generateFromOscillator(new TriangleOscillator(SAMPLE_RATE, 300, 1.0), "triangle.wave")
+        then:
+        noExceptionThrown()
+    }
+
+    def "generate square wave"() {
+        when:
+        generateFromOscillator(new SquareOscillator(SAMPLE_RATE, 300, 1.0), "square.wave")
+        then:
+        noExceptionThrown()
+    }
+
     def "generate round drum head"() {
         when:
+        generateFromModel(new CircularDrumHeadModel(), 150, "round-drum.wav")
+        then:
+        noExceptionThrown()
+    }
+
+    def "generate square drum head"() {
+        when:
+        generateFromModel(new SquareDrumHeadModel(), 150, "square-drum.wav")
+        then:
+        noExceptionThrown()
+    }
+
+    // ====== Utility methods for the above tests ======
+
+    def generateFromModel(AbstractAdditiveModel model, int hertz, String filename) {
         VolumeEnvelope volumeEnvelope = new VolumeEnvelope()
         Normalizer normalizer = new Normalizer()
         Mixer mixer = new Mixer()
-        CircularDrumHeadModel model = new CircularDrumHeadModel()
 
-        List<? extends AbstractOscillator> oscillators = model.getOscillators(SAMPLE_RATE, 150)
+        List<? extends AbstractOscillator> oscillators = model.getOscillators(SAMPLE_RATE, hertz)
         List<Double> samples = mixer.mix(oscillators, SAMPLE_RATE, SECONDS)
         volumeEnvelope.process(samples)
         normalizer.process(samples)
 
-        new WaveWriter().write(new File("round-drum.wav"), samples)
-
-        then:
-        noExceptionThrown()
+        new WaveWriter().write(new File(filename), samples)
     }
 
-    def "generate sine"() {
-        when:
+    def generateFromOscillator(AbstractOscillator oscillator, String filename) {
         VolumeEnvelope volumeEnvelope = new VolumeEnvelope()
         Normalizer normalizer = new Normalizer()
-        SineOscillator oscillator = new SineOscillator(SAMPLE_RATE, 300, 1.0)
         Mixer mixer = new Mixer()
 
-        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
+        def samples = mixer.mix([oscillator], SAMPLE_RATE, SECONDS)
         volumeEnvelope.process(samples)
         normalizer.process(samples)
 
-        new WaveWriter().write(new File("sine.wav"), samples)
-
-        then:
-        noExceptionThrown()
-    }
-
-    def "generate sawtooth"() {
-        when:
-        VolumeEnvelope volumeEnvelope = new VolumeEnvelope()
-        Normalizer normalizer = new Normalizer()
-        SawtoothOscillator oscillator = new SawtoothOscillator(SAMPLE_RATE, 300, 1.0)
-        Mixer mixer = new Mixer()
-
-        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
-        volumeEnvelope.process(samples)
-        normalizer.process(samples)
-
-        new WaveWriter().write(new File("sawtooth.wav"), samples)
-
-        then:
-        noExceptionThrown()
-    }
-
-    def "generate triangle"() {
-        when:
-        VolumeEnvelope volumeEnvelope = new VolumeEnvelope()
-        Normalizer normalizer = new Normalizer()
-        TriangleOscillator oscillator = new TriangleOscillator(SAMPLE_RATE, 300, 1.0)
-        Mixer mixer = new Mixer()
-
-        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
-        volumeEnvelope.process(samples)
-        normalizer.process(samples)
-
-        new WaveWriter().write(new File("triangle.wav"), samples)
-
-        then:
-        noExceptionThrown()
-    }
-
-    def "generate square"() {
-        when:
-        VolumeEnvelope volumeEnvelope = new VolumeEnvelope()
-        Normalizer normalizer = new Normalizer()
-        SquareOscillator oscillator = new SquareOscillator(SAMPLE_RATE, 300, 1.0)
-        Mixer mixer = new Mixer()
-
-        def samples = mixer.mix([oscillator], SAMPLE_RATE, 1.5)
-        volumeEnvelope.process(samples)
-        normalizer.process(samples)
-
-        new WaveWriter().write(new File("square.wav"), samples)
-
-        then:
-        noExceptionThrown()
+        new WaveWriter().write(new File(filename), samples)
     }
 
 }

@@ -18,7 +18,7 @@ public class ExponentialDistortion extends AbstractProcessor {
      * exponent < 1.0 means the sound is fatter
      * exponent 1.0 means no distortion
      * Pleasing values range roughly from 0.5 to 10.
-     * For best results, experiment with the VolumeEnvelope coming before or after the distortion.
+     * Be sure to experiment with the VolumeEnvelope coming before or after the distortion.
      */
     public ExponentialDistortion(double exponent) {
         this.exponent = exponent;
