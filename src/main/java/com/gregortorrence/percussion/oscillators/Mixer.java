@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Mixer {
 
-    public List<Double> mix(List<? extends AbstractOscillator> oscillators, long sampleRate, double seconds) {
+    public List<Double> mix(List<? extends AbstractSampleSource> oscillators, long sampleRate, double seconds) {
         int length = (int)((double)sampleRate * seconds);
         List<Double> samples = new ArrayList<>();
         for (int i=0; i<length; i++) {

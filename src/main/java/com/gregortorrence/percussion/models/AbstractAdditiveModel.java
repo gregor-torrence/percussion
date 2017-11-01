@@ -1,7 +1,6 @@
 package com.gregortorrence.percussion.models;
 
 import com.gregortorrence.percussion.oscillators.AbstractOscillator;
-import com.gregortorrence.percussion.oscillators.OscillatorType;
 
 import java.util.List;
 
@@ -12,6 +11,10 @@ import java.util.List;
  * Created by Gregor Torrence on 9/27/17.
  */
 public abstract class AbstractAdditiveModel {
+
+    public enum OscillatorType {
+        SINE, SQUARE, TRIANGLE, SAWTOOTH
+    }
 
     private OscillatorType oscillatorType = OscillatorType.SINE;
 

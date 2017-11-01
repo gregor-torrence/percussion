@@ -11,8 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import static java.lang.Math.abs;
-
 /**
  * Converts floating point sample data into a wave file.
  *
@@ -30,7 +28,7 @@ public class WaveWriter {
     private AudioInputStream toAudioInputStream(List<Double> samples) {
         byte[] data = new byte[2 * samples.size()];
         for (int i = 0; i < samples.size(); i++) {
-            double sample = abs(samples.get(i));
+            double sample = samples.get(i);
             if (sample > 1.0) {
                 throw new IllegalArgumentException("Supplied samples are not normalized");
             }

@@ -20,28 +20,42 @@ class MainSpec extends Specification {
 
     def "generate sine wave"() {
         when:
-        generateFromOscillator(new SineOscillator(SAMPLE_RATE, 300, 1.0), "sine.wav")
+        generateFromSource(new SineOscillator(SAMPLE_RATE, 300, 1.0), "sine.wav")
         then:
         noExceptionThrown()
     }
 
     def "generate sawtooth wave"() {
         when:
-        generateFromOscillator(new SawtoothOscillator(SAMPLE_RATE, 300, 1.0), "sawtooth.wav")
+        generateFromSource(new SawtoothOscillator(SAMPLE_RATE, 300, 1.0), "sawtooth.wav")
         then:
         noExceptionThrown()
     }
 
     def "generate triangle wave"() {
         when:
-        generateFromOscillator(new TriangleOscillator(SAMPLE_RATE, 300, 1.0), "triangle.wave")
+        generateFromSource(new TriangleOscillator(SAMPLE_RATE, 300, 1.0), "triangle.wav")
         then:
         noExceptionThrown()
     }
 
     def "generate square wave"() {
         when:
-        generateFromOscillator(new SquareOscillator(SAMPLE_RATE, 300, 1.0), "square.wave")
+        generateFromSource(new SquareOscillator(SAMPLE_RATE, 300, 1.0), "square.wav")
+        then:
+        noExceptionThrown()
+    }
+
+    def "generate white noise"() {
+        when:
+        generateFromSource(new WhiteNoiseSource(), "white-noise.wav")
+        then:
+        noExceptionThrown()
+    }
+
+    def "generate bounded noise"() {
+        when:
+        generateFromSource(new BoundedNoiseSource(SAMPLE_RATE, 100.0, 400.0), "bounded-noise.wav")
         then:
         noExceptionThrown()
     }
@@ -75,7 +89,7 @@ class MainSpec extends Specification {
         new WaveWriter().write(new File(filename), samples)
     }
 
-    def generateFromOscillator(AbstractOscillator oscillator, String filename) {
+    def generateFromSource(AbstractSampleSource oscillator, String filename) {
         VolumeEnvelope volumeEnvelope = new VolumeEnvelope()
         Normalizer normalizer = new Normalizer()
         Mixer mixer = new Mixer()

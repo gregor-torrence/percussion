@@ -8,9 +8,11 @@ Currently, there is no UI or service endpoint. There is only one [Spock](http://
 writes some example WAV files from hard-coded parameters. 
 
 #### Terminology
-* `Oscillator` A simple oscillator with no envelope functionality. Sine, Square, Triangle, and Sawtooth are implemented.
+* `SampleSource` Any source of sample-able audio data.
+* `NoiseSource` A sample source of noise. White and bounded frequency versions are implemented.
+* `Oscillator` A sample source that is simple oscillator with no envelope functionality. Sine, Square, Triangle, and Sawtooth are implemented. These are the possible components of additive synthesis.
 * `Model` A class for creating a List of oscillators whose output is to be summed with a Mixer. Round and square drum heads are implemented.
-* `Mixer` Creates sampled data from a List of oscillators.  This is additive part of additive synthesis.
+* `Mixer` Creates sampled data from a List of sample sources.  This is primarily the additive part of additive synthesis.
 * `Processor` A class for processing sample data. The order in which these are applied is largely arbitrary. Volume Envelope, Normalizer, Distortion, and Debug output processors are implemented.
 
 #### Typical data flow
