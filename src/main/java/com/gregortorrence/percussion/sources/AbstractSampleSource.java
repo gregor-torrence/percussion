@@ -1,4 +1,4 @@
-package com.gregortorrence.percussion.oscillators;
+package com.gregortorrence.percussion.sources;
 
 /**
  * Base class for for any oscillator or noise source. Provides the method for getting sample data at a given index.

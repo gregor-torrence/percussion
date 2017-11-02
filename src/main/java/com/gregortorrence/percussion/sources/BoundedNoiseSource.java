@@ -1,4 +1,4 @@
-package com.gregortorrence.percussion.oscillators;
+package com.gregortorrence.percussion.sources;
 
 import java.util.Random;
 
@@ -13,10 +13,13 @@ import static java.lang.Math.sin;
  */
 public class BoundedNoiseSource extends AbstractSampleSource {
 
-    private Random random = new Random();
-    private double[] loop = new double[50000];
+    private final double[] loop;
 
-    public BoundedNoiseSource(long sampleRate, double minHertz, double maxHertz) {
+    public BoundedNoiseSource(long sampleRate, double minHertz, double maxHertz, double seconds) {
+        Random random = new Random();
+        int loopSize = (int)(sampleRate * seconds) + 1;
+        loop = new double[loopSize];
+
         for (int h=0; h<100; h++) {
             double hertz = random.nextDouble() * abs(maxHertz - minHertz) + minHertz;
             double phase = random.nextDouble()*2.0*PI;

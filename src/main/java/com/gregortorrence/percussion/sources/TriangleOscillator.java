@@ -1,4 +1,4 @@
-package com.gregortorrence.percussion.oscillators;
+package com.gregortorrence.percussion.sources;
 
 import static java.lang.Math.*;
 

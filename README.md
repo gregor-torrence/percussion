@@ -4,7 +4,7 @@ Experimental tool to use additive synthesis to create audio sample files of perc
 The long term goal is to implement this as a serverless REST endpoint that can be invoked from a static front end.
 At that point, this becomes a tool for generating percussion samples for importing into any sampler software or hardware.
 
-Currently, there is no UI or service endpoint. There is only one [Spock](http://spockframework.org/) spec that 
+Currently, there is no UI or service endpoint. There is only [Spock](http://spockframework.org/) integration tests that 
 writes some example WAV files from hard-coded parameters. 
 
 #### Terminology

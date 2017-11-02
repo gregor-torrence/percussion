@@ -1,6 +1,6 @@
 package com.gregortorrence.percussion.models;
 
-import com.gregortorrence.percussion.oscillators.AbstractOscillator;
+import com.gregortorrence.percussion.sources.AbstractOscillator;
 
 import java.util.List;
 

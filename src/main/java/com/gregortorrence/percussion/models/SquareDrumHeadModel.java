@@ -1,10 +1,10 @@
 package com.gregortorrence.percussion.models;
 
-import com.gregortorrence.percussion.oscillators.AbstractOscillator;
-import com.gregortorrence.percussion.oscillators.SawtoothOscillator;
-import com.gregortorrence.percussion.oscillators.SineOscillator;
-import com.gregortorrence.percussion.oscillators.SquareOscillator;
-import com.gregortorrence.percussion.oscillators.TriangleOscillator;
+import com.gregortorrence.percussion.sources.AbstractOscillator;
+import com.gregortorrence.percussion.sources.SawtoothOscillator;
+import com.gregortorrence.percussion.sources.SineOscillator;
+import com.gregortorrence.percussion.sources.SquareOscillator;
+import com.gregortorrence.percussion.sources.TriangleOscillator;
 
 import java.util.ArrayList;
 import java.util.List;
