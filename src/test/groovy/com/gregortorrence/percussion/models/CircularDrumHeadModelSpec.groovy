@@ -1,5 +1,7 @@
 package com.gregortorrence.percussion.models
 
+import com.gregortorrence.percussion.AbstractModelSpec
+
 /**
  * Created by Gregor Torrence on 11/1/17.
  */

@@ -12,7 +12,7 @@ writes some example WAV files from hard-coded parameters.
 * `NoiseSource` A sample source of noise. White and bounded frequency versions are implemented.
 * `Oscillator` A sample source that is simple oscillator with no envelope functionality. Sine, Square, Triangle, and Sawtooth are implemented. These are the possible components of additive synthesis.
 * `Model` A class for creating a List of oscillators whose output is to be summed with a Mixer. Round and square drum heads are implemented.
-* `Mixer` Creates sampled data from a List of sample sources.  This is primarily the additive part of additive synthesis.
+* `Blender` Creates sampled data from a List of sample sources. This is primarily the additive part of additive synthesis. A Mixer combines samples by addition, and a RingModulator combines by multiplication.
 * `Processor` A class for processing sample data. The order in which these are applied is largely arbitrary. Volume Envelope, Normalizer, Distortion, and Debug output processors are implemented.
 
 #### Typical data flow

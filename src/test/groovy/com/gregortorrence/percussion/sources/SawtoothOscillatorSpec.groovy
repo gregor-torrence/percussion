@@ -1,5 +1,7 @@
 package com.gregortorrence.percussion.sources
 
+import com.gregortorrence.percussion.AbstractSourceSpec
+
 import static com.gregortorrence.percussion.TestConstants.*
 
 /**

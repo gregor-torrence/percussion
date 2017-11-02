@@ -1,4 +1,7 @@
 package com.gregortorrence.percussion.sources
+
+import com.gregortorrence.percussion.AbstractSourceSpec
+
 /**
  * Created by Gregor Torrence on 11/1/17.
  */

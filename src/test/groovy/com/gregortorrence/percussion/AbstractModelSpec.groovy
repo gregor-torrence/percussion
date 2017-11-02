@@ -1,10 +1,11 @@
-package com.gregortorrence.percussion.models
+package com.gregortorrence.percussion
 
+import com.gregortorrence.percussion.models.AbstractAdditiveModel
 import com.gregortorrence.percussion.output.WaveWriter
 import com.gregortorrence.percussion.processors.Normalizer
 import com.gregortorrence.percussion.processors.VolumeEnvelope
 import com.gregortorrence.percussion.sources.AbstractOscillator
-import com.gregortorrence.percussion.sources.Mixer
+import com.gregortorrence.percussion.blenders.Mixer
 import spock.lang.Specification
 
 import static com.gregortorrence.percussion.TestConstants.*

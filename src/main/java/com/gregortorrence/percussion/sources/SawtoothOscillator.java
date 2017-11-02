@@ -14,7 +14,7 @@ public class SawtoothOscillator extends AbstractOscillator {
     }
 
     public double sample(int i) {
-        double x = (hertz * i * 2.0 * PI) / (sampleRate);
+        double x = (hertz * i * PI) / (sampleRate);
         return -amplitude * atan(1.0 / tan(x + PI/2.0));
     }
 
