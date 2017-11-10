@@ -1,6 +1,7 @@
 # Additive Synthesis of percussion
 
 Experimental tool to use additive synthesis to create audio sample files of percussion noises.
+
 The long term goal is to implement this as a serverless REST endpoint that can be invoked from a static front end.
 At that point, this becomes a tool for generating percussion samples for importing into any sampler software or hardware.
 

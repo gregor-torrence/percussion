@@ -15,12 +15,12 @@ public class BoundedNoiseSource extends AbstractSampleSource {
 
     private final double[] loop;
 
-    public BoundedNoiseSource(long sampleRate, double minHertz, double maxHertz, double seconds) {
+    public BoundedNoiseSource(long sampleRate, double minHertz, double maxHertz, int density, double seconds) {
         Random random = new Random();
         int loopSize = (int)(sampleRate * seconds) + 1;
         loop = new double[loopSize];
 
-        for (int h=0; h<100; h++) {
+        for (int h=0; h<density; h++) {
             double hertz = random.nextDouble() * abs(maxHertz - minHertz) + minHertz;
             double phase = random.nextDouble()*2.0*PI;
             for (int i = 0; i < loop.length; i++) {

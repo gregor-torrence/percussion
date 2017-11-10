@@ -1,7 +1,5 @@
 package com.gregortorrence.percussion.sources;
 
-import java.util.Random;
-
 /**
  * Adds a single oscillation at the beginning of a sample source. Adds the attack transients that typically
  * would come from a stick striking an instrument.
@@ -13,8 +11,6 @@ public class TransientSource extends AbstractSampleSource {
     public enum TransientType {
         SINE, TRIANGLE, SQUARE, SAWTOOTH
     }
-
-    private Random random = new Random();
 
     protected long sampleRate;
     protected double hertz;

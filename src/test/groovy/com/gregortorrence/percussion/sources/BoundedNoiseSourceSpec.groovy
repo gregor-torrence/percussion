@@ -13,7 +13,7 @@ class BoundedNoiseSourceSpec extends AbstractSourceSpec {
         given:
         def seconds = 0.5
         when:
-        generateFromSource(new BoundedNoiseSource(SAMPLE_RATE, 4000.0, 15000.0, seconds), seconds, "bounded-noise.wav")
+        generateFromSource(new BoundedNoiseSource(SAMPLE_RATE, 4000.0, 15000.0, 100, seconds), seconds, "bounded-noise.wav")
         then:
         noExceptionThrown()
     }
