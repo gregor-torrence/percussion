@@ -1,10 +1,12 @@
 package com.gregortorrence.percussion.models;
 
 import com.google.common.collect.ImmutableList;
-import com.gregortorrence.percussion.sources.*;
+import com.gregortorrence.percussion.sources.AbstractOscillator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.gregortorrence.percussion.sources.OscillatorType.createOscillator;
 
 /**
  * Uses zeros of Bessel functions for the overtone series of a vibrating circular drum head.
@@ -43,26 +45,11 @@ public class CircularDrumHeadModel extends AbstractAdditiveModel {
         for (int m = 0; m<roots.size(); m++) {
             for (int j=0; j<roots.get(m).size(); j++) {
                 double harmonic = roots.get(m).get(j) / DIVISOR;
-                oscillators.add(createOscillator(sampleRate, hertz, m, j, harmonic));
+                oscillators.add(createOscillator(getOscillatorType(), sampleRate, hertz, 1.0 / (harmonic * harmonic * (m+1) * (j+1))));
             }
         }
 
         return oscillators;
-    }
-
-    private AbstractOscillator createOscillator(int sampleRate, double hertz, int m, int j, double harmonic) {
-        switch (getOscillatorType()) {
-            case SINE:
-                return new SineOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
-            case SQUARE:
-                return new SquareOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
-            case SAWTOOTH:
-                return new SawtoothOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
-            case TRIANGLE:
-                return new TriangleOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic * (m+1) * (j+1)));
-            default:
-                throw new IllegalStateException("Unhandled OscillatorType " + getOscillatorType());
-        }
     }
 
 }

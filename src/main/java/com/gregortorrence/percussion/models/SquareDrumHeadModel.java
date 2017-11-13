@@ -1,13 +1,11 @@
 package com.gregortorrence.percussion.models;
 
 import com.gregortorrence.percussion.sources.AbstractOscillator;
-import com.gregortorrence.percussion.sources.SawtoothOscillator;
-import com.gregortorrence.percussion.sources.SineOscillator;
-import com.gregortorrence.percussion.sources.SquareOscillator;
-import com.gregortorrence.percussion.sources.TriangleOscillator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.gregortorrence.percussion.sources.OscillatorType.createOscillator;
 
 /**
  * Uses zeros of Eigen functions for the overtone series of a vibrating square drum head.
@@ -22,25 +20,10 @@ public class SquareDrumHeadModel extends AbstractAdditiveModel {
     public List<? extends AbstractOscillator> getOscillators(final int sampleRate, final int hertz) {
         List<AbstractOscillator> oscillators = new ArrayList<>();
         for (double harmonic = 1.0; harmonic<2.0; harmonic*=MULTIPLIER) {
-            oscillators.add(createOscillator(sampleRate, hertz, harmonic));
+            oscillators.add(createOscillator(getOscillatorType(), sampleRate, hertz*harmonic, 1.0 / (harmonic * harmonic)));
         }
 
         return oscillators;
-    }
-
-    private AbstractOscillator createOscillator(int sampleRate, double hertz, double harmonic) {
-        switch (getOscillatorType()) {
-            case SINE:
-                return new SineOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic));
-            case SQUARE:
-                return new SquareOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic));
-            case SAWTOOTH:
-                return new SawtoothOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic));
-            case TRIANGLE:
-                return new TriangleOscillator(sampleRate, hertz * harmonic, 1.0 / (harmonic * harmonic));
-            default:
-                throw new IllegalStateException("Unhandled OscillatorType " + getOscillatorType());
-        }
     }
 
 }

@@ -7,8 +7,8 @@ import java.util.List;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public abstract class AbstractProcessor {
+public interface Processor {
 
-    public abstract List<Double> process(List<Double> samples);
+    List<Double> process(List<Double> samples);
 
 }

@@ -10,7 +10,7 @@ import static java.lang.Math.*;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public class Normalizer extends AbstractProcessor {
+public class Normalizer implements Processor {
 
     @Override
     public List<Double> process(List<Double> samples) {

@@ -11,7 +11,7 @@ class TransientSourceSpec extends AbstractSourceSpec {
 
     def "generate transient"() {
         when:
-        generateFromSource(new TransientSource(SAMPLE_RATE, 300, 1.0, TransientSource.TransientType.TRIANGLE), 1.0, "transient.wav")
+        generateFromSource(new TransientSource(SAMPLE_RATE, 300, 1.0, OscillatorType.TRIANGLE), 1.0, "transient.wav")
         then:
         noExceptionThrown()
     }

@@ -5,7 +5,7 @@ Experimental tool to use additive synthesis to create audio sample files of perc
 The long term goal is to implement this as a serverless REST endpoint that can be invoked from a static front end.
 At that point, this becomes a tool for generating percussion samples for importing into any sampler software or hardware.
 
-Currently, there is no UI or service endpoint. There is only [Spock](http://spockframework.org/) integration tests that 
+Currently, there is no UI or service endpoint. There are only [Spock](http://spockframework.org/) integration tests that 
 writes some example WAV files from hard-coded parameters. 
 
 #### Terminology
@@ -22,3 +22,5 @@ writes some example WAV files from hard-coded parameters.
 * An Envelope is used to make the amplitude of the samples start at full volume and trail off to silence at the very end.
 * A normalizer is used to scale the sample values to be bounded within a range of -1.0 to 1.0.
 * A WaveWriter is used to convert the floating point values into integers and write them to a WAV file.
+
+(See the package `com.gregortorrence.percussion.examples` for implemented examples.)

@@ -9,9 +9,9 @@ import static java.lang.Math.*;
  *
  * Created by Gregor Torrence on 9/27/17.
  */
-public class ExponentialDistortion extends AbstractProcessor {
+public class ExponentialDistortion implements Processor {
 
-    double exponent;
+    private double exponent;
 
     /**
      * exponent < 1.0 means the sound is fatter.
