@@ -1,7 +1,5 @@
 package com.gregortorrence.percussion.examples
 
-import com.gregortorrence.percussion.processors.Normalizer
-import com.gregortorrence.percussion.processors.VolumeEnvelope
 import com.gregortorrence.percussion.sources.BoundedNoiseSource
 import com.gregortorrence.percussion.sources.OscillatorType
 import com.gregortorrence.percussion.sources.TransientSource
@@ -24,10 +22,7 @@ class SnareDrumSpec extends AbstractExampleSpec {
                         new BoundedNoiseSource(SAMPLE_RATE, 80.0,  1500.0, 50, seconds),
                         new WhiteNoiseSource()
                 ],
-                [
-                        new Normalizer(),
-                        new VolumeEnvelope()
-                ],
+                normalProcessors,
                 "example-snare-drum-noise.wav",
                 seconds
         )

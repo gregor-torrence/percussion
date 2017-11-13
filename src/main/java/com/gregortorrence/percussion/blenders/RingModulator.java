@@ -4,7 +4,6 @@ import com.gregortorrence.percussion.sources.AbstractSampleSource;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.DoubleBinaryOperator;
 
 /**
  * In the way that a Mixer adds sample data together, a RingModulator multiplies sample data together.
