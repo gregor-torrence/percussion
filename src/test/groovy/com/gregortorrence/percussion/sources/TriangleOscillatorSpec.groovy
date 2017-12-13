@@ -11,7 +11,7 @@ class TriangleOscillatorSpec extends AbstractSourceSpec {
 
     def "generate triangle wave"() {
         when:
-        generateFromSource(new TriangleOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "triangle.wav")
+        generateFromSource(new TriangleOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "unit-test-triangle.wav")
         then:
         noExceptionThrown()
     }

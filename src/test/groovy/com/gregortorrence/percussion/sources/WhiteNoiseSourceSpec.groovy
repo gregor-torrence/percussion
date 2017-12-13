@@ -9,7 +9,7 @@ class WhiteNoiseSourceSpec extends AbstractSourceSpec {
 
     def "generate white noise"() {
         when:
-        generateFromSource(new WhiteNoiseSource(), 0.5, "white-noise.wav")
+        generateFromSource(new WhiteNoiseSource(), 0.5, "unit-test-white-noise.wav")
         then:
         noExceptionThrown()
     }

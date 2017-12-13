@@ -24,7 +24,7 @@ class RingModulatorSpec extends AbstractModelSpec {
         new VolumeEnvelope().process(samples)
 
         when:
-        new WaveWriter().write(new File("ring-mod.wav"), samples)
+        new WaveWriter().write(new File("unit-test-ring-mod.wav"), samples)
 
         then:
         noExceptionThrown()

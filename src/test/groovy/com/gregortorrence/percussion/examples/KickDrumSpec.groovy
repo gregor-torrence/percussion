@@ -29,7 +29,7 @@ class KickDrumSpec extends AbstractExampleSpec {
         writeFromSources(
                 [
                         new TransientSource(SAMPLE_RATE, 100, 2.0, OscillatorType.TRIANGLE),
-                        new VariantOscillatorSource(SAMPLE_RATE, 50, 90, 1.0)
+                        new VariantOscillatorSource(SAMPLE_RATE, 60, 80, 1.0)
                 ],
                 normalProcessors,
                 "example-kick-drum-variant.wav",
@@ -49,6 +49,22 @@ class KickDrumSpec extends AbstractExampleSpec {
                 ],
                 normalProcessors,
                 "example-kick-drum-triangle.wav",
+                1.0
+        )
+
+        then:
+        noExceptionThrown()
+    }
+
+    def 'create bounded noise kick drum'() {
+        when:
+        writeFromSources(
+                [
+                        new TransientSource(SAMPLE_RATE, 100, 2.0, OscillatorType.TRIANGLE),
+                        new BoundedNoiseSource(SAMPLE_RATE, 50, 90, 50,1.0)
+                ],
+                normalProcessors,
+                "example-kick-drum-bounded-noise.wav",
                 1.0
         )
 

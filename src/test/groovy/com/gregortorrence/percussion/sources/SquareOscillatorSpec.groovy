@@ -11,7 +11,7 @@ class SquareOscillatorSpec extends AbstractSourceSpec {
 
     def "generate square wave"() {
         when:
-        generateFromSource(new SquareOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "square.wav")
+        generateFromSource(new SquareOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "unit-test-square.wav")
         then:
         noExceptionThrown()
     }

@@ -13,7 +13,7 @@ class VariantOscillatorSourceSpec extends AbstractSourceSpec {
         given:
         def seconds = 0.5
         when:
-        generateFromSource(new VariantOscillatorSource(SAMPLE_RATE, 60.0, 100.0, seconds), seconds, "bounded-freq.wav")
+        generateFromSource(new VariantOscillatorSource(SAMPLE_RATE, 60.0, 100.0, seconds), seconds, "unit-test-bounded-freq.wav")
         then:
         noExceptionThrown()
     }

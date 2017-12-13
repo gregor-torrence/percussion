@@ -11,7 +11,7 @@ class SineOscillatorSpec extends AbstractSourceSpec {
 
     def "generate sine wave"() {
         when:
-        generateFromSource(new SineOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "sine.wav")
+        generateFromSource(new SineOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "unit-test-sine.wav")
         then:
         noExceptionThrown()
     }

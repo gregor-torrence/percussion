@@ -11,7 +11,7 @@ class SawtoothOscillatorSpec extends AbstractSourceSpec {
 
     def "generate sawtooth wave"() {
         when:
-        generateFromSource(new SawtoothOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "sawtooth.wav")
+        generateFromSource(new SawtoothOscillator(SAMPLE_RATE, 300, 1.0), 1.0, "unit-test-sawtooth.wav")
         then:
         noExceptionThrown()
     }

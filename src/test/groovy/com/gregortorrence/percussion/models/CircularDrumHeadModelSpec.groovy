@@ -9,7 +9,7 @@ class CircularDrumHeadModelSpec extends AbstractModelSpec {
 
     def "generate circular drum head"() {
         when:
-        generateFromModel(new CircularDrumHeadModel(), 80, 0.25, "circular-drum.wav")
+        generateFromModel(new CircularDrumHeadModel(), 80, 0.25, "unit-test-circular-membrane.wav")
         then:
         noExceptionThrown()
     }
