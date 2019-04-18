@@ -1,13 +1,10 @@
 package com.gregortorrence.percussion.output;
 
-import com.sun.media.sound.WaveFileWriter;
+import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFileManager;
+import com.musicg.wave.WaveHeader;
 
-import javax.sound.sampled.AudioFileFormat;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,25 +16,29 @@ import java.util.List;
 public class WaveWriter {
 
     public void write(File file, List<Double> values) throws IOException {
-        WaveFileWriter waveFileWriter = new WaveFileWriter();
-        try (FileOutputStream outputStream = new FileOutputStream(file)) {
-            waveFileWriter.write(toAudioInputStream(values), AudioFileFormat.Type.WAVE, outputStream);
-        }
+        WaveHeader header = new WaveHeader();
+        header.setSampleRate(44100);
+        header.setSubChunk1Size(16);
+        header.setSubChunk2Size(values.size() * 2);
+
+        Wave wave = new Wave(header, toBytes(values));
+
+        WaveFileManager waveFileManager = new WaveFileManager(wave);
+        waveFileManager.saveWaveAsFile(file.getAbsolutePath());
     }
 
-    private AudioInputStream toAudioInputStream(List<Double> samples) {
+    private byte[] toBytes(List<Double> samples) {
         byte[] data = new byte[2 * samples.size()];
         for (int i = 0; i < samples.size(); i++) {
             double sample = samples.get(i);
-            if (sample > 1.0) {
+            if (sample > 1.0 || sample < -1.0) {
                 throw new IllegalArgumentException("Supplied samples are not normalized");
             }
             int temp = (short) (sample * 32767);
             data[2*i    ] = (byte) temp;
             data[2*i + 1] = (byte) (temp >> 8);
         }
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
-        AudioFormat format = new AudioFormat(44100, 16, 1, true, false);
-        return new AudioInputStream(byteArrayInputStream, format, samples.size());
+        return data;
     }
+
 }

@@ -2,6 +2,7 @@ group 'gregortorrence'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'groovy'
 
 sourceCompatibility = 1.8
 
@@ -13,6 +14,7 @@ repositories {
 
 dependencies {
     compile group: 'com.google.guava', name: 'guava', version: '21.0'
+    compile group: 'com.github.fracpete', name: 'musicg', version: '1.4.2.2'
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
 
