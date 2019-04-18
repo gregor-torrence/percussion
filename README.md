@@ -23,4 +23,8 @@ writes some example WAV files from hard-coded parameters.
 * A normalizer is used to scale the sample values to be bounded within a range of -1.0 to 1.0.
 * A WaveWriter is used to convert the floating point values into integers and write them to a WAV file.
 
+#### Build and run
+* Java JDK 11 must be available at the command line.
+* Build and run test tests with `./gradlew clean build test`
+
 (See the package `com.gregortorrence.percussion.examples` for implemented examples.)
